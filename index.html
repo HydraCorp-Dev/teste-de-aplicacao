@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste GrowthBook</title>
+
+  <!--Colar o snippet dentro da tag head-->
+  <!--Copiar o snippet daqui-->
+  <script async
+    data-api-host="https://cdn.growthbook.io"
+    data-client-key="sdk-1Kkun1raKBahfBE"
+    src="https://cdn.jsdelivr.net/npm/@growthbook/growthbook/dist/bundles/auto.min.js">
+  </script>
+  <!--Copiar o snippet até aqui-->
+
+</head>
+<body>
+  
+  <button id="btn-direciona">checkout</button>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+                                          // substituir pelo botão correto. 
+      const checkoutBtn = document.getElementById("btn-direciona");
+
+      checkoutBtn.addEventListener("click", function () {
+        // Garante que o GrowthBook está carregado
+        const checkoutVariant = window.growthbook?.getFeatureValue("checkout_variant", "verdinho");
+
+        console.log("Usuário caiu na variante:", checkoutVariant);
+
+        // Define a URL com base na flag
+        let checkoutUrl = "https://adesao.cartaodetodos.com.br/dados-pessoais/";
+        if (checkoutVariant === "sonhos") {
+          checkoutUrl = "https://adesao.cartaodetodos.com.br/dados-pessoais/?partner=sonhos";
+        }
+
+        // Redireciona no clique
+        window.location.href = checkoutUrl;
+      });
+    });
+  </script>  
+</body>
+</html>
